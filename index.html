@@ -7,7 +7,7 @@
   <meta name="description" content="OID Ltd is a quality control and product development company based in Foshan, China. Factory audits, initial, during-production and pre-shipment inspections, post-production rework and container loading checks — with 20+ years of experience.">
   <link rel="canonical" href="https://www.oidltd.info/">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#F3F2EE">
+  <meta name="theme-color" content="#16191b">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OID Ltd">
@@ -19,6 +19,7 @@
   <meta property="og:image:height" content="691">
   <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.oidltd.info" crossorigin>
@@ -36,7 +37,7 @@
     "name": "OID Ltd",
     "legalName": "Foshan OID Technology Consulting CO. Ltd",
     "url": "https://www.oidltd.info/",
-    "logo": "https://www.oidltd.info/wp-content/uploads/2025/01/logo.png",
+    "logo": "https://www.oidltd.info/assets/oid-logo-grey.svg",
     "image": "https://www.oidltd.info/wp-content/uploads/2025/06/banner06-scaled.jpg",
     "description": "Quality control, factory audits, production inspections, post-production rework and product development in China.",
     "email": "info@oidltd.info",
@@ -61,6 +62,7 @@
     <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
     <symbol id="i-arrow-up-right" viewBox="0 0 20 20"><path d="M6 14 14 6M7.5 6H14v6.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
     <symbol id="i-plus" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 20 20"><path d="M4 10h12" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
     <symbol id="i-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
     <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.5v9l7.5-4.5z" fill="currentColor"/></symbol>
     <symbol id="i-prev" viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
@@ -74,7 +76,8 @@
   <header class="site-header" data-header>
     <div class="container site-header__inner">
       <a class="brand" href="#top" aria-label="OID Ltd — back to top">
-        <img src="https://www.oidltd.info/wp-content/uploads/2025/01/logo.png" width="300" height="70" alt="OID Ltd">
+        <img class="brand__grey" src="assets/oid-mark-grey.svg" width="1011" height="275" alt="OID Ltd">
+        <img class="brand__white" src="assets/oid-mark-white.svg" width="1011" height="275" alt="" aria-hidden="true">
       </a>
 
       <nav class="nav" aria-label="Primary">
@@ -122,42 +125,44 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero__meta mono" data-reveal>
-          <span>Foshan OID Technology Consulting</span>
-          <span>Quality control · Inspection · Product development</span>
-          <span>Guangdong, China — UTC+8</span>
-        </div>
+      <div class="hero__stage" data-hero-media>
+        <img class="hero__bg" src="https://www.oidltd.info/wp-content/uploads/2025/06/banner06-1536x691.jpg"
+             srcset="https://www.oidltd.info/wp-content/uploads/2025/06/banner06-768x346.jpg 768w, https://www.oidltd.info/wp-content/uploads/2025/06/banner06-1536x691.jpg 1536w, https://www.oidltd.info/wp-content/uploads/2025/06/banner06-2048x922.jpg 2048w, https://www.oidltd.info/wp-content/uploads/2025/06/banner06-scaled.jpg 2560w"
+             sizes="100vw" width="2560" height="1152" alt="" fetchpriority="high" decoding="async">
+        <div class="hero__grid-lines" aria-hidden="true"></div>
 
-        <div class="hero__grid">
-          <h1 class="hero__title" id="hero-title">
-            <span class="line"><span data-reveal-line>Quality control.</span></span>
-            <span class="line line--muted"><span data-reveal-line>From factory floor</span></span>
-            <span class="line line--muted"><span data-reveal-line>to global market.</span></span>
-          </h1>
+        <div class="container hero__content">
+          <div class="hero__meta mono" data-reveal>
+            <span>Foshan OID Technology Consulting</span>
+            <span>Quality control · Inspection · Product development</span>
+            <span>Guangdong, China — UTC+8</span>
+          </div>
 
-          <div class="hero__aside" data-reveal>
-            <p class="lead">OID provides quality control, supplier audits, production inspections and product development directly from China — our inspectors are in the factory, so you don’t have to be.</p>
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="#contact"><span>Request an inspection</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-              <a class="btn btn--ghost" href="#services"><span>Explore our services</span></a>
+          <div class="hero__grid">
+            <h1 class="hero__title" id="hero-title">
+              <span class="line"><span data-reveal-line>Quality control.</span></span>
+              <span class="line line--muted"><span data-reveal-line>From factory floor</span></span>
+              <span class="line line--muted"><span data-reveal-line>to global market.</span></span>
+            </h1>
+
+            <div class="hero__aside" data-reveal>
+              <p class="lead">OID provides quality control, supplier audits, production inspections and product development directly from China — our inspectors are in the factory, so you don’t have to be.</p>
+              <div class="hero__actions">
+                <a class="btn btn--light" href="#contact"><span>Request an inspection</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="btn btn--outline-light" href="#services"><span>Explore our services</span></a>
+              </div>
             </div>
+          </div>
+
+          <div class="hero__foot">
+            <button class="play-btn" type="button" data-lightbox-open="film-main">
+              <span class="play-btn__icon"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span><strong>Watch OID on site</strong><span class="mono">Company film</span></span>
+            </button>
+            <a class="hero__scroll mono" href="#about">Scroll <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>
-
-      <figure class="hero__media" data-hero-media>
-        <img src="https://www.oidltd.info/wp-content/uploads/2025/06/banner06-1536x691.jpg"
-             srcset="https://www.oidltd.info/wp-content/uploads/2025/06/banner06-768x346.jpg 768w, https://www.oidltd.info/wp-content/uploads/2025/06/banner06-1536x691.jpg 1536w, https://www.oidltd.info/wp-content/uploads/2025/06/banner06-2048x922.jpg 2048w, https://www.oidltd.info/wp-content/uploads/2025/06/banner06-scaled.jpg 2560w"
-             sizes="100vw" width="2560" height="1152" alt="OID quality control work in a Chinese manufacturing facility" fetchpriority="high" decoding="async">
-        <figcaption class="hero__caption container">
-          <button class="play-btn" type="button" data-lightbox-open="film-main">
-            <span class="play-btn__icon"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
-            <span><strong>Watch OID on site</strong><span class="mono">Company film</span></span>
-          </button>
-          <span class="mono hero__coords" aria-hidden="true">REF · OID / QC / CN</span>
-        </figcaption>
-      </figure>
 
       <div class="container">
         <ul class="facts" aria-label="Key facts">
@@ -193,25 +198,31 @@
           </div>
 
           <figure class="about__portrait" data-reveal="mask">
-            <img src="https://www.oidltd.info/wp-content/uploads/2025/11/Foto_Dinner2.jpg"
+            <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/11/Foto_Dinner2.jpg" data-lightbox="photos" aria-label="Enlarge photo of Matteo Monterisi, CEO">
+              <img src="https://www.oidltd.info/wp-content/uploads/2025/11/Foto_Dinner2.jpg"
                  srcset="https://www.oidltd.info/wp-content/uploads/2025/11/Foto_Dinner2-235x300.jpg 235w, https://www.oidltd.info/wp-content/uploads/2025/11/Foto_Dinner2.jpg 582w"
                  sizes="(min-width: 1024px) 28vw, 60vw" width="582" height="742" loading="lazy" decoding="async" alt="Matteo Monterisi, CEO of OID Ltd">
+            </a>
             <figcaption><span>Matteo Monterisi</span><span class="mono">CEO</span></figcaption>
           </figure>
 
           <figure class="about__team" data-reveal="mask">
-            <img src="https://www.oidltd.info/wp-content/uploads/2025/10/team.png"
+            <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/team.png" data-lightbox="photos" aria-label="Enlarge team photo">
+              <img src="https://www.oidltd.info/wp-content/uploads/2025/10/team.png"
                  srcset="https://www.oidltd.info/wp-content/uploads/2025/10/team-300x225.png 300w, https://www.oidltd.info/wp-content/uploads/2025/10/team.png 600w"
                  sizes="(min-width: 1024px) 24vw, 90vw" width="600" height="450" loading="lazy" decoding="async" alt="OID team members">
+            </a>
             <figcaption class="mono">The team</figcaption>
           </figure>
         </div>
       </div>
 
       <figure class="about__band" data-reveal="mask">
-        <img src="https://www.oidltd.info/wp-content/uploads/2025/11/team_all-1536x405.png"
+        <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/11/team_all.png" data-lightbox="photos" aria-label="Enlarge photo of the OID team">
+          <img src="https://www.oidltd.info/wp-content/uploads/2025/11/team_all-1536x405.png"
              srcset="https://www.oidltd.info/wp-content/uploads/2025/11/team_all-768x202.png 768w, https://www.oidltd.info/wp-content/uploads/2025/11/team_all-1024x270.png 1024w, https://www.oidltd.info/wp-content/uploads/2025/11/team_all-1536x405.png 1536w, https://www.oidltd.info/wp-content/uploads/2025/11/team_all.png 1708w"
              sizes="100vw" width="1708" height="450" loading="lazy" decoding="async" alt="The OID Ltd team">
+        </a>
         <figcaption class="container mono">The OID team · Foshan, China</figcaption>
       </figure>
     </section>
@@ -318,9 +329,9 @@
           </figure>
 
           <figure class="what__image" data-reveal="mask">
-            <img src="https://www.oidltd.info/wp-content/uploads/2025/06/panorama-617x1024.jpg"
-                 srcset="https://www.oidltd.info/wp-content/uploads/2025/06/panorama-617x1024.jpg 617w, https://www.oidltd.info/wp-content/uploads/2025/06/panorama-768x1275.jpg 768w, https://www.oidltd.info/wp-content/uploads/2025/06/panorama-925x1536.jpg 925w"
-                 sizes="(min-width: 1200px) 22vw, (min-width: 768px) 40vw, 90vw" width="617" height="1024" loading="lazy" decoding="async" alt="Panoramic view of an industrial area in Guangdong">
+            <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00023.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+              <img src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00023.jpg" width="450" height="600" loading="lazy" decoding="async" alt="OID quality control work on site in China">
+            </a>
           </figure>
         </div>
       </div>
@@ -373,7 +384,9 @@
                 <div><dt class="mono">Outcome</dt><dd>A “turnkey” product, ready for the market</dd></div>
                 <div><dt class="mono">Covers</dt><dd>Planning, materials &amp; certifications, documentation, assembly, packaging &amp; logistics</dd></div>
               </dl>
-              <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00009.jpg" width="600" height="270" loading="lazy" decoding="async" alt="">
+              <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00009.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+                <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00009.jpg" width="600" height="270" loading="lazy" decoding="async" alt="OID inspection work in China">
+              </a>
               <button class="link-btn" type="button" data-dialog-open="dlg-pd"><span>Full scope</span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
             </li>
 
@@ -385,7 +398,9 @@
                 <div><dt class="mono">When</dt><dd>At the start of new projects or supply relationships</dd></div>
                 <div><dt class="mono">Assesses</dt><dd>Production capacity, quality and legal compliance</dd></div>
               </dl>
-              <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00011.jpg" width="600" height="270" loading="lazy" decoding="async" alt="">
+              <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00011.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+                <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00011.jpg" width="600" height="270" loading="lazy" decoding="async" alt="OID inspection work in China">
+              </a>
               <button class="link-btn" type="button" data-dialog-open="dlg-fa"><span>Full scope</span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
             </li>
 
@@ -397,7 +412,9 @@
                 <div><dt class="mono">When</dt><dd>As production begins</dd></div>
                 <div><dt class="mono">Purpose</dt><dd>Confirm the production starts in line with specifications</dd></div>
               </dl>
-              <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00013.jpg" width="600" height="270" loading="lazy" decoding="async" alt="">
+              <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00013.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+                <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00013.jpg" width="600" height="270" loading="lazy" decoding="async" alt="OID inspection work in China">
+              </a>
               <button class="link-btn" type="button" data-dialog-open="dlg-ipi"><span>Full scope</span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
             </li>
 
@@ -410,7 +427,9 @@
                 <div><dt class="mono">Levels</dt><dd>100%, 50% or 25% of products</dd></div>
                 <div><dt class="mono">Response</dt><dd>Intervention within 48 hours</dd></div>
               </dl>
-              <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00014.jpg" width="600" height="270" loading="lazy" decoding="async" alt="">
+              <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00014.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+                <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00014.jpg" width="600" height="270" loading="lazy" decoding="async" alt="OID inspection work in China">
+              </a>
               <button class="link-btn" type="button" data-dialog-open="dlg-dpi"><span>Full scope</span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
             </li>
 
@@ -422,7 +441,9 @@
                 <div><dt class="mono">Team</dt><dd>Project-based: inspectors, mechanical and electrical engineers</dd></div>
                 <div><dt class="mono">Checks</dt><dd>Visual, dimensional and functional</dd></div>
               </dl>
-              <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00020.jpg" width="600" height="270" loading="lazy" decoding="async" alt="">
+              <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00020.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+                <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00020.jpg" width="600" height="270" loading="lazy" decoding="async" alt="OID inspection work in China">
+              </a>
               <button class="link-btn" type="button" data-dialog-open="dlg-rw"><span>Full scope</span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
             </li>
 
@@ -434,7 +455,9 @@
                 <div><dt class="mono">When</dt><dd>Products 100% complete, approx. 70% packaged</dd></div>
                 <div><dt class="mono">Deliverable</dt><dd>Final compliance report, usable for customs procedures</dd></div>
               </dl>
-              <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00021.jpg" width="600" height="270" loading="lazy" decoding="async" alt="">
+              <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/10/Image00021.jpg" data-lightbox="photos" aria-label="Enlarge photo">
+                <img class="svc__thumb" src="https://www.oidltd.info/wp-content/uploads/2025/10/Image00021.jpg" width="600" height="270" loading="lazy" decoding="async" alt="OID inspection work in China">
+              </a>
               <button class="link-btn" type="button" data-dialog-open="dlg-psi"><span>Full scope</span><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
             </li>
           </ol>
@@ -500,9 +523,11 @@
           <p class="trust__number" aria-hidden="true"><span data-count="20">20</span><span class="plus">+</span></p>
           <h2 class="trust__title" id="trust-title" data-reveal>Years of experience inside Chinese manufacturing.</h2>
           <figure class="trust__image" data-reveal="mask">
-            <img src="https://www.oidltd.info/wp-content/uploads/2025/11/team_2.png"
+            <a class="zoom" href="https://www.oidltd.info/wp-content/uploads/2025/11/team_2.png" data-lightbox="photos" aria-label="Enlarge team photo">
+              <img src="https://www.oidltd.info/wp-content/uploads/2025/11/team_2.png"
                  srcset="https://www.oidltd.info/wp-content/uploads/2025/11/team_2-768x357.png 768w, https://www.oidltd.info/wp-content/uploads/2025/11/team_2.png 967w"
                  sizes="(min-width: 1024px) 40vw, 90vw" width="967" height="450" loading="lazy" decoding="async" alt="OID Ltd team at work">
+            </a>
           </figure>
         </div>
 
@@ -624,9 +649,31 @@
             </div>
             <p class="form__status" role="status" aria-live="polite" data-form-status></p>
           </form>
+
+          <div class="brief" data-reveal>
+            <p class="mono brief__title">Useful to include</p>
+            <ul class="brief__list">
+              <li><span class="mono">01</span>Product, quantity and the specifications to check against</li>
+              <li><span class="mono">02</span>Supplier name and factory location in China</li>
+              <li><span class="mono">03</span>Production stage and the date you need us on site</li>
+              <li><span class="mono">04</span>Any standard, test or packaging requirement</li>
+            </ul>
+          </div>
         </div>
 
+        <div class="contact__side">
+        <figure class="place" data-reveal="mask">
+          <a class="zoom" href="assets/foshan-where-we-are.webp" data-lightbox="photos" aria-label="Enlarge photo of Foshan, where OID is based">
+            <img src="assets/foshan-where-we-are.webp" width="617" height="1024" loading="lazy" decoding="async" alt="Evening skyline of Foshan, Guangdong — the city where OID is based">
+          </a>
+          <figcaption>
+            <span class="mono">Where we are</span>
+            <span>Shunde District, Foshan — Guangdong, China</span>
+          </figcaption>
+        </figure>
+
         <aside class="office" aria-labelledby="office-title" data-reveal>
+          <img class="office__mark" src="assets/oid-mark-white.svg" width="1011" height="275" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div class="office__head">
             <p class="mono office__kicker">Office · China</p>
             <p class="mono office__clock">Foshan local time <strong data-clock>—</strong></p>
@@ -661,6 +708,7 @@
             </figure>
           </div>
         </aside>
+        </div>
       </div>
     </section>
 
@@ -668,6 +716,7 @@
     <section class="cta" aria-labelledby="cta-title">
       <img class="cta__bg" src="https://www.oidltd.info/wp-content/uploads/elementor/thumbs/banner04-e1760346673154-rd5233xtlx1xdjnbren1j8hk4eecbd9cn32s47y5t8.jpg" alt="" loading="lazy" decoding="async">
       <div class="container cta__inner">
+        <img class="cta__logo" src="assets/oid-logo-white.svg" width="1946" height="433" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <p class="mono cta__kicker">Quality starts before shipment</p>
         <h2 class="cta__title" id="cta-title" data-reveal>Need someone on <br>the factory floor?</h2>
         <div class="cta__actions" data-reveal>
@@ -683,7 +732,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <img src="https://www.oidltd.info/wp-content/uploads/2025/01/logo.png" width="300" height="70" alt="OID Ltd" loading="lazy" decoding="async">
+          <img src="assets/oid-logo-grey.svg" width="1946" height="433" alt="OID — Overseas Inspection Development" loading="lazy" decoding="async">
           <p>Quality control, inspections and product development in China.</p>
           <p class="mono">Best quality, better life.</p>
         </div>
@@ -712,7 +761,7 @@
           <p class="mono">VAT 91440606MACHXQ785B</p>
         </div>
       </div>
-      <p class="footer__word" aria-hidden="true">OID</p>
+      <div class="footer__word" aria-hidden="true"><img src="assets/oid-mark-grey.svg" width="1011" height="275" alt="" loading="lazy" decoding="async"></div>
       <div class="footer__bottom mono">
         <span>© <span data-year>2026</span> OID Ltd. All rights reserved.</span>
         <a href="#top">Back to top ↑</a>
@@ -922,7 +971,12 @@
   <dialog class="lightbox" aria-label="Media viewer" data-lightbox-dialog>
     <div class="lightbox__bar mono">
       <span data-lb-count>1 / 1</span>
-      <button class="lightbox__close" type="button" data-lb-close aria-label="Close viewer"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <div class="lightbox__tools">
+        <button class="lightbox__tool" type="button" data-lb-zoom="out" aria-label="Zoom out"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+        <span class="lightbox__zoomlevel" data-lb-level aria-live="polite">100%</span>
+        <button class="lightbox__tool" type="button" data-lb-zoom="in" aria-label="Zoom in"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <button class="lightbox__close" type="button" data-lb-close aria-label="Close viewer" autofocus><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
     </div>
     <div class="lightbox__stage" data-lb-stage></div>
     <button class="lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Previous item"><svg class="icon" aria-hidden="true"><use href="#i-prev"/></svg></button>

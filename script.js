@@ -18,8 +18,15 @@
 
   /* ---------- Header state ---------- */
   const header = $("[data-header]");
-  const onScrollHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  const heroStage = $(".hero__stage");
+  const onScrollHeader = () => {
+    const y = window.scrollY;
+    header.classList.toggle("is-scrolled", y > 8);
+    const overHero = heroStage && !document.body.classList.contains("menu-open") && y < heroStage.offsetHeight - header.offsetHeight;
+    header.classList.toggle("is-over-hero", Boolean(overHero));
+  };
   onScrollHeader();
+  window.addEventListener("resize", onScrollHeader, { passive: true });
 
   /* ---------- Hero parallax (subtle scale) ---------- */
   const heroMedia = $("[data-hero-media]");
@@ -51,6 +58,8 @@
     $(".menu-toggle__label", toggle).textContent = open ? "Close" : "Menu";
     menu.hidden = !open;
     document.body.classList.toggle("is-locked", open);
+    document.body.classList.toggle("menu-open", open);
+    onScrollHeader();
     if (open) $("a", menu).focus();
   };
   toggle.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
@@ -173,23 +182,66 @@
     });
   }
 
-  /* ---------- Lightbox ---------- */
+  /* ---------- Lightbox (images, video, zoom & pan) ---------- */
   const lb = $("[data-lightbox-dialog]");
   if (lb) {
     const stageEl = $("[data-lb-stage]", lb);
     const countEl = $("[data-lb-count]", lb);
+    const levelEl = $("[data-lb-level]", lb);
     const prevBtn = $("[data-lb-prev]", lb);
     const nextBtn = $("[data-lb-next]", lb);
+    const zoomIn = $('[data-lb-zoom="in"]', lb);
+    const zoomOut = $('[data-lb-zoom="out"]', lb);
+    const MAX = 4;
     let list = [];
     let index = 0;
     let opener = null;
+    let z = { s: 1, x: 0, y: 0 };
 
-    const visibleLinks = () => $$('[data-lightbox="gallery"]').filter((a) => !a.closest("[hidden]"));
+    const groupLinks = (group) => $$(`[data-lightbox="${group}"]`).filter((a) => !a.closest("[hidden]"));
+    const currentImg = () => stageEl.querySelector("img");
+
+    const clampPan = () => {
+      const img = currentImg();
+      if (!img) return;
+      const maxX = (img.clientWidth * (z.s - 1)) / 2;
+      const maxY = (img.clientHeight * (z.s - 1)) / 2;
+      z.x = Math.min(maxX, Math.max(-maxX, z.x));
+      z.y = Math.min(maxY, Math.max(-maxY, z.y));
+    };
+    const applyZoom = () => {
+      const img = currentImg();
+      const isImg = Boolean(img);
+      zoomIn.disabled = !isImg || z.s >= MAX;
+      zoomOut.disabled = !isImg || z.s <= 1;
+      levelEl.textContent = isImg ? `${Math.round(z.s * 100)}%` : "";
+      if (!img) return;
+      clampPan();
+      img.style.transform = `translate(${z.x}px, ${z.y}px) scale(${z.s})`;
+      stageEl.classList.toggle("is-zoomed", z.s > 1);
+    };
+    // Zoom towards a point (clientX/Y) so that point stays under the pointer.
+    const zoomTo = (next, cx, cy) => {
+      const img = currentImg();
+      if (!img) return;
+      next = Math.min(MAX, Math.max(1, next));
+      const r = img.getBoundingClientRect();
+      const ox = (cx ?? r.left + r.width / 2) - (r.left + r.width / 2);
+      const oy = (cy ?? r.top + r.height / 2) - (r.top + r.height / 2);
+      const k = next / z.s;
+      z.x = z.x * k - ox * (k - 1);
+      z.y = z.y * k - oy * (k - 1);
+      z.s = next;
+      if (z.s === 1) { z.x = 0; z.y = 0; }
+      applyZoom();
+    };
+    const resetZoom = () => { z = { s: 1, x: 0, y: 0 }; applyZoom(); };
 
     const render = () => {
       const a = list[index];
       stageEl.querySelector("video")?.pause();
       stageEl.textContent = "";
+      z = { s: 1, x: 0, y: 0 };
       if (a.dataset.type === "video") {
         const v = document.createElement("video");
         v.src = a.href;
@@ -202,22 +254,28 @@
         if (!reduceMotion) v.play().catch(() => {});
       } else {
         const img = document.createElement("img");
-        img.src = a.href;
         img.alt = $("img", a)?.alt || "";
         img.decoding = "async";
+        img.draggable = false;
+        // Don't blow small originals up beyond 2x their real size before the user zooms.
+        img.addEventListener("load", () => {
+          img.style.maxWidth = `${img.naturalWidth * 2}px`;
+          img.style.maxHeight = `${img.naturalHeight * 2}px`;
+        }, { once: true });
+        img.src = a.href;
         stageEl.appendChild(img);
       }
+      applyZoom();
       countEl.textContent = `${index + 1} / ${list.length}`;
       const single = list.length < 2;
       prevBtn.hidden = single;
       nextBtn.hidden = single;
-      // Warm the next image.
       const next = list[(index + 1) % list.length];
-      if (next && next.dataset.type !== "video") { const pre = new Image(); pre.src = next.href; }
+      if (next && next !== a && next.dataset.type !== "video") { const pre = new Image(); pre.src = next.href; }
     };
 
     const openAt = (a) => {
-      list = visibleLinks();
+      list = groupLinks(a.dataset.lightbox);
       index = Math.max(0, list.indexOf(a));
       opener = document.activeElement;
       render();
@@ -227,7 +285,7 @@
     const step = (d) => { index = (index + d + list.length) % list.length; render(); };
 
     document.addEventListener("click", (e) => {
-      const a = e.target.closest('[data-lightbox="gallery"]');
+      const a = e.target.closest("a[data-lightbox]");
       if (a) { e.preventDefault(); openAt(a); return; }
       const trigger = e.target.closest("[data-lightbox-open]");
       if (trigger) {
@@ -237,11 +295,15 @@
     });
     prevBtn.addEventListener("click", () => step(-1));
     nextBtn.addEventListener("click", () => step(1));
+    zoomIn.addEventListener("click", () => zoomTo(z.s * 1.5));
+    zoomOut.addEventListener("click", () => zoomTo(z.s / 1.5));
     $("[data-lb-close]", lb).addEventListener("click", () => lb.close());
-    lb.addEventListener("click", (e) => { if (e.target === lb || e.target === stageEl) lb.close(); });
     lb.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") step(1);
-      else if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight" && z.s === 1) step(1);
+      else if (e.key === "ArrowLeft" && z.s === 1) step(-1);
+      else if (e.key === "+" || e.key === "=") zoomTo(z.s * 1.5);
+      else if (e.key === "-") zoomTo(z.s / 1.5);
+      else if (e.key === "0") resetZoom();
     });
     lb.addEventListener("close", () => {
       stageEl.querySelector("video")?.pause();
@@ -249,16 +311,76 @@
       document.body.classList.remove("is-locked");
       opener?.focus?.();
     });
+    window.addEventListener("resize", () => { if (lb.open) applyZoom(); });
 
-    // Touch swipe
-    let x0 = null;
-    stageEl.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
-    stageEl.addEventListener("touchend", (e) => {
-      if (x0 === null) return;
-      const dx = e.changedTouches[0].clientX - x0;
-      if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
-      x0 = null;
+    // Wheel zoom
+    stageEl.addEventListener("wheel", (e) => {
+      if (!currentImg()) return;
+      e.preventDefault();
+      zoomTo(z.s * (e.deltaY < 0 ? 1.2 : 1 / 1.2), e.clientX, e.clientY);
+    }, { passive: false });
+
+    // Pointer: click/double-tap to zoom, drag to pan, pinch to zoom, swipe to navigate.
+    const pointers = new Map();
+    let start = null;
+    let pinch = null;
+    let lastTap = 0;
+    stageEl.addEventListener("pointerdown", (e) => {
+      if (!e.target.matches("img")) return;
+      e.target.setPointerCapture(e.pointerId);
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 2) {
+        const [p1, p2] = [...pointers.values()];
+        pinch = { d: Math.hypot(p1.x - p2.x, p1.y - p2.y), s: z.s };
+      } else {
+        start = { x: e.clientX, y: e.clientY, zx: z.x, zy: z.y, moved: false };
+      }
     });
+    stageEl.addEventListener("pointermove", (e) => {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pinch && pointers.size === 2) {
+        const [p1, p2] = [...pointers.values()];
+        const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        zoomTo(pinch.s * (d / pinch.d), (p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+        return;
+      }
+      if (!start) return;
+      const dx = e.clientX - start.x;
+      const dy = e.clientY - start.y;
+      if (Math.abs(dx) + Math.abs(dy) > 6) start.moved = true;
+      if (z.s > 1 && start.moved) {
+        stageEl.classList.add("is-dragging");
+        z.x = start.zx + dx;
+        z.y = start.zy + dy;
+        applyZoom();
+      }
+    });
+    const endPointer = (e) => {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.delete(e.pointerId);
+      stageEl.classList.remove("is-dragging");
+      if (pinch) { if (pointers.size < 2) pinch = null; start = null; return; }
+      if (!start) return;
+      const dx = e.clientX - start.x;
+      if (!start.moved) {
+        const now = Date.now();
+        const isTouch = e.pointerType !== "mouse";
+        if (!isTouch || now - lastTap < 300) {
+          if (z.s > 1) resetZoom(); else zoomTo(2.5, e.clientX, e.clientY);
+          lastTap = 0;
+        } else {
+          lastTap = now;
+        }
+      } else if (z.s === 1 && Math.abs(dx) > 50 && list.length > 1) {
+        step(dx < 0 ? 1 : -1);
+      }
+      start = null;
+    };
+    stageEl.addEventListener("pointerup", endPointer);
+    stageEl.addEventListener("pointercancel", endPointer);
+    // Click on the empty area around the media closes the viewer.
+    stageEl.addEventListener("click", (e) => { if (e.target === stageEl) lb.close(); });
   }
 
   /* ---------- Counter (20+) ---------- */
